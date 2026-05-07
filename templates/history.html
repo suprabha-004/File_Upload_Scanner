@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan History</title>
+
+    <style>
+        body { font-family: Arial; }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th { background-color: #ddd; }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2 style="text-align:center;">📊 Scan History</h2>
+
+<div class="controls">
+    🔍 <input type="text" id="searchInput" placeholder="Search file name...">
+
+    🔽 <select id="riskFilter">
+        <option value="">All Risks</option>
+        <option value="Low Risk">Low Risk</option>
+        <option value="Medium Risk">Medium Risk</option>
+        <option value="High Risk">High Risk</option>
+    </select>
+</div>
+
+<table id="historyTable">
+    <tr>
+        <th>ID</th>
+        <th>File Name</th>
+        <th>Hash</th>
+        <th>Risk</th>
+        <th>Score</th>
+        <th>Time</th>
+    </tr>
+
+    {% for row in scans %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td class="filename">{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td class="risk">{{ row[7] }}</td>
+        <td>{{ row[8] }}</td>
+        <td>{{ row[9] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<div style="text-align:center;">
+    <a href="/">⬅ Back to Home</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("searchInput");
+    const riskFilter = document.getElementById("riskFilter");
+    const table = document.getElementById("historyTable");
+    const rows = table.getElementsByTagName("tr");
+
+    function filterTable() {
+        const searchValue = searchInput.value.toLowerCase();
+        const selectedRisk = riskFilter.value;
+
+        for (let i = 1; i < rows.length; i++) {
+            const filename = rows[i].querySelector(".filename").textContent.toLowerCase();
+            const risk = rows[i].querySelector(".risk").textContent;
+
+            let show = true;
+
+            //  Search filter
+            if (searchValue && !filename.includes(searchValue)) {
+                show = false;
+            }
+
+            //  Risk filter
+            if (selectedRisk && risk !== selectedRisk) {
+                show = false;
+            }
+
+            rows[i].style.display = show ? "" : "none";
+        }
+    }
+
+    searchInput.addEventListener("keyup", filterTable);
+    riskFilter.addEventListener("change", filterTable);
+
+});
+</script>
+
+</body>
+</html>

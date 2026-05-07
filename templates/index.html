@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Scanner</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js"></script>
+    
+</head>
+<body>
+    <h2>Upload File for Security Scan</h2>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Scan</button>
+    </form>
+    <br><br>
+<a href="/history">
+    <button>View Scan History</button>
+</a>
+</body>
+</html>

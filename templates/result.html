@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Result</title>
+</head>
+<body>
+    <h2>Scan Result</h2>
+
+    <p><strong>File:</strong> {{ filename }}</p>
+    <p><strong>Hash:</strong> {{ hash }}</p>
+    <p><strong>Extension Risk:</strong> {{ ext }}</p>
+    <p><strong>VirusTotal Status:</strong> 
+    {% if vt.status == "Not Found" %}
+        <span style="color:orange;">⚠️ Unknown File (Not in database)</span>
+    {% elif vt.status == "Safe" %}
+        <span style="color:green;">✅ Safe</span>
+    {% elif vt.status == "Malicious" %}
+        <span style="color:red;">🚨 Malicious</span>
+    {% else %}
+        {{ vt.status }}
+    {% endif %}
+</p>
+    <p><strong>Content Flags:</strong> {{ content }}</p>
+    <p><strong>Risk Level:</strong> {{ risk }}</p>
+    <p><strong>Score:</strong> {{ score }}</p>
+
+    <a href="/">Scan another file</a>
+</body>
+</html>
