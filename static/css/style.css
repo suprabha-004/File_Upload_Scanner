@@ -1,12 +1,118 @@
 body {
-    font-family: Arial;
-    text-align: center;
-    margin-top: 50px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+    /* 🔥 Background Image */
+    background: linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
+    ),
+    url("../images/cyber-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-button {
-    padding: 10px;
-    background: blue;
+/* 🔥 Main Card */
+.container {
+    width: 420px;
+    padding: 35px;
+
+    background: rgba(255,255,255,0.08);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.4);
+
+    text-align: center;
+
     color: white;
+}
+
+/* Heading */
+.container h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+/* Subtitle */
+.subtitle {
+    color: #d1d1d1;
+    margin-bottom: 30px;
+}
+
+/* Upload Area */
+.upload-box {
+    border: 2px dashed #00e5ff;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    margin-bottom: 25px;
+
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Buttons */
+button {
+    width: 100%;
+
+    padding: 14px;
+
     border: none;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+
+    transition: 0.3s;
+}
+
+/* Scan Button */
+.scan-btn {
+    background: linear-gradient(
+        90deg,
+        #00f5ff,
+        #0099ff
+    );
+
+    color: black;
+
+    font-weight: bold;
+}
+
+.scan-btn:hover {
+    transform: scale(1.03);
+}
+
+/* History Button */
+.history-btn {
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+}
+
+.history-btn:hover {
+    background: rgba(255,255,255,0.25);
 }
